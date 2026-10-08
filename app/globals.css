@@ -1,0 +1,319 @@
+@import "tailwindcss";
+
+@theme {
+  --color-on-tertiary-fixed: #001f29;
+  --color-on-tertiary-container: #074457;
+  --color-on-secondary-fixed-variant: #3f4c00;
+  --color-outline-variant: #ddc0b8;
+  --color-surface: #ffffff;
+  --color-secondary-container: #d6ed7a;
+  --color-inverse-primary: #ffb59e;
+  --color-tertiary-container: #80b1c7;
+  --color-surface-bright: #ffffff;
+  --color-on-surface-variant: #555555;
+  --color-tertiary: #326578;
+  --color-surface-container-highest: #e8e2d7;
+  --color-on-primary-fixed-variant: #7f2a0d;
+  --color-on-primary-fixed: #3a0b00;
+  --color-primary: #FF5E3A;
+  --color-on-surface: #000000;
+  --color-on-error-container: #93000a;
+  --color-surface-tint: #9f4122;
+  --color-surface-container-low: #f9f3e8;
+  --color-secondary-fixed: #d6ed7a;
+  --color-secondary: #556500;
+  --color-on-secondary-fixed: #181e00;
+  --color-on-tertiary: #ffffff;
+  --color-primary-container: #ff8a65;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-primary-container: #752305;
+  --color-tertiary-fixed-dim: #9ccee4;
+  --color-on-tertiary-fixed-variant: #154d5f;
+  --color-surface-container-lowest: #ffffff;
+  --color-background: #ffffff;
+  --color-on-secondary-container: #5a6c00;
+  --color-surface-container-high: #ede8dd;
+  --color-inverse-surface: #333029;
+  --color-on-primary: #ffffff;
+  --color-tertiary-fixed: #bbe9ff;
+  --color-primary-fixed-dim: #ffb59e;
+  --color-on-secondary: #ffffff;
+  --color-inverse-on-surface: #f6f0e5;
+  --color-surface-container: #f3ede2;
+  --color-primary-fixed: #ffdbd0;
+  --color-on-background: #000000;
+  --color-secondary-fixed-dim: #bbd062;
+  --color-error: #ba1a1a;
+  --color-surface-dim: #dfd9cf;
+  --color-surface-variant: #f4f4f4;
+  --color-outline: #89726b;
+
+  --spacing-unit: 8px;
+  --spacing-gutter: 32px;
+  --spacing-container-padding: 64px;
+  --spacing-section-gap: 120px;
+  --spacing-card-internal: 40px;
+
+  --font-label-caps: "Plus Jakarta Sans";
+  --font-headline-lg: "Plus Jakarta Sans";
+  --font-body-lg: "Plus Jakarta Sans";
+  --font-headline-md: "Plus Jakarta Sans";
+  --font-display-xl: "Plus Jakarta Sans";
+  --font-body-md: "Plus Jakarta Sans";
+}
+
+@utility text-label-caps {
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+}
+@utility text-headline-lg {
+  font-size: 40px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+@utility text-body-lg {
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+@utility text-headline-md {
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+@utility text-display-xl {
+  font-size: 64px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+}
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+@utility material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .hero-dynamic-gradient {
+      background: radial-gradient(
+          circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+          rgba(45, 212, 191, 0.15) 0%, 
+          rgba(99, 102, 241, 0.12) 35%, 
+          rgba(168, 85, 247, 0.08) 65%, 
+          transparent 100%
+      ), linear-gradient(180deg, rgba(255,255,255,0) 0%, var(--color-background) 100%);
+      transition: background 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  
+  .cta-dynamic-gradient {
+      background: radial-gradient(
+          circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+          #1e1b4b 0%,
+          #312e81 40%,
+          #134e4a 100%
+      );
+      background-blend-mode: overlay;
+      transition: background 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+/* ══ Slide to confirm ══════════════════════════════════════
+   A handle crossing a track, and on commit the handle IS the
+   confirmation — it unfurls leftward and fills what it crossed.
+   See SlideConfirm.tsx for why the right edge stays put. */
+.sld {
+  --card: var(--color-surface-container-highest);
+  --fill-on: #000000;
+  --fill-on-rgb: 0, 0, 0;
+  --fill-slab: var(--color-surface-variant);
+  --font-ui: var(--font-body-md);
+  --ink: var(--color-on-surface);
+  --ink-rgb: 0, 0, 0;
+  --pane-edge: var(--color-outline);
+
+  box-sizing: border-box;
+  font-family: var(--font-ui);
+  color: var(--fill-on, var(--ink));
+}
+
+.sld-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  /* ── the track is the SLAB, the handle is the INK ─────────
+     It was the other way round — a translucent wash for the
+     track on the reasoning that a groove is darker than what
+     it is cut into. True, and it has nothing to be cut into:
+     this track IS the whole block, so there is no surrounding
+     surface and a 7% wash had no opaque ground under it. On a
+     dark fill that left a near-invisible track with a dark
+     circle sitting on it. Measured: track
+     rgba(244,243,241,0.07) over a light stage.
+
+     Slab and ink is the pair the liquid toggle uses and it
+     inverts from one rule: white track with a near-black
+     handle in light, near-black track with a light handle in
+     dark. And on commit the handle fills the track, so the
+     confirmed state is a solid ink pill in both. */
+  background: var(--fill-slab, var(--card));
+  /* the drag is the component; the browser may not take the
+     gesture for panning */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+[data-stroke="on"] .sld-track {
+  box-shadow: inset 0 0 0 1px var(--pane-edge);
+}
+
+/* ── the ground already covered ─────────────────────────────
+   THE SAME INK AS THE HANDLE, which turns this from a trail
+   into the handle's own body. It was an 8% tint, and a tint is
+   read as a progress bar: a track filling up behind a knob that
+   slides along it. Two objects.
+
+   The geometry was already right for one. This runs from the
+   left pad to `x + GRIP` — the handle's RIGHT edge, not its
+   left — with the handle's own corner radius, so the pair
+   describes a single capsule with a rounded cap at each end and
+   the handle's cap doing the work at the leading edge. Only the
+   colour said otherwise. Matched, there is no seam to find: the
+   dot stretches out of the corner it started in and the far end
+   is still the dot.
+
+   It cannot be the ink at 100% and also sit UNDER the words. */
+.sld-wash {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 4px;
+  background: var(--fill-on, var(--ink));
+  /* ── above the label, so it WIPES it ─────────────────────
+     Beneath it, the label's remaining ink sat on a surface its
+     own colour and went muddy rather than away — the fade
+     reaches zero at 55% of the travel and the capsule's edge
+     arrives at the first letter around 30%, so there is a
+     stretch where the two overlap. Painted over, the words are
+     covered by the advancing cap instead: they leave under a
+     rounded edge that is the handle's own shape, which reads as
+     the thing eating them rather than as a wipe.
+     The handle is `auto` and later in the DOM, and `auto` loses
+     to any z-index at all, so it needs one of its own. */
+  z-index: 1;
+  pointer-events: none;
+}
+
+.sld-say {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  /* ── CENTRED IN THE PILL, not in the room beside it ──────
+     It was inset by the handle's width, on the reasoning that
+     the words should be centred in the space actually left to
+     them. That is the right rule for a label sharing a row with
+     a control, and the wrong one here: the track IS the object,
+     and a label pushed 24px right of its middle reads as
+     off-centre rather than as considerate — there is nothing
+     for it to be centred against except the pill.
+
+     It costs nothing at rest — the words start well clear of
+     the handle — and the overlap it was avoiding is now the
+     point, since the capsule wipes them as it comes. */
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  color: rgba(var(--fill-on-rgb, var(--ink-rgb)), 0.45);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.sld-grip {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: var(--fill-on, var(--ink));
+  color: var(--fill-slab, var(--card));
+  cursor: grab;
+  /* ── it takes the pointer now, and the track still wins ───
+     It was `none`, so the track owned the gesture outright.
+     The handle has to know when a cursor is ON it to swell,
+     and a press still reaches the track by BUBBLING — the
+     handle is inside it — so nothing about the drag changed.
+     Once the track captures the pointer every later event is
+     retargeted there anyway, which is why a drag that wanders
+     off the handle keeps reporting. */
+  pointer-events: auto;
+  /* the wall it lands against, so the squash compresses
+     toward the end of the track rather than about its middle */
+  transform-origin: 0% 50%;
+  /* it is placed by a motion value, so nothing here may
+     transition `transform` or the two fight every frame */
+  transition: none;
+  /* over the wash, which had to claim a layer to cover the
+     label — see .sld-wash */
+  z-index: 2;
+}
+
+.sld-track[data-held] .sld-grip { cursor: grabbing; }
+
+/* ── two contents, both ABSOLUTE ────────────────────────────
+   Stacked so neither has to make room for the other and the
+   handle's width is free to be whatever the morph says it is.
+
+   They were one grid cell, and that put the arrow 21.3px right
+   of the handle's centre. "Confirmed" is 59px wide and the
+   resting handle is 42, so the shared track was wider than the
+   box holding it — and an overflowing grid item resolves
+   `center` to `start`, which shoved both to one side. The same
+   rule caught the carousel inside the Pro sheet.
+
+   Absolute with `inset: 0` has no such rule: each fills the
+   handle and centres its own content, at every width the morph
+   passes through, and neither can size the handle. */
+.sld-arrow,
+.sld-done {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.006em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sld-done { transition-duration: 1ms; }
+}
